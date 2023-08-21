@@ -38,6 +38,31 @@
           - php
         state: latest
       when: ansible_distribution == "CentOS"
+
+    - name: start httpd (CentOS)
+      tags: apache, httpd, Centos
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+      when: ansible_distribution == "CentOS"
+
+    - name: change email address for admin
+      tags: apache, httpd, Centos
+      lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^ServerAdmin'
+        line: ServerAdmin newemail@domain.com
+      when: ansible_distribution == "CentOS"
+      register: randomVariableNameExampleHttpd
+
+    - name: restart httpd (CentOS)
+      tags: apache, Centos, httpd
+      service:
+        name: httpd
+        state: restarted
+      when: randomVariableNameExampleHttpd.changed
+
     
     - name: copy default html file to prod
       tags: apache, apache2, httpd
