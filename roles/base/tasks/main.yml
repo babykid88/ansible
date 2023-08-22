@@ -1,0 +1,4 @@
+- name: add ssh key for tbf
+  authorized_key:
+    user: tbf
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILMl8Oi3YUuqORAvvgT5fLJKZntV7BhHoW9823t7cM44 ansible"
