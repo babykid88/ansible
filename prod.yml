@@ -4,19 +4,28 @@
   become: true
   pre_tasks:
 
-    - name: install updates (Ubuntu)
+    - name: update repo cache (Ubuntu)
       tags: always
       apt:
-        upgrade: dist
         update_cache: yes
+      changed_when: false
       when: ansible_distribution == "Ubuntu"
 
-    - name: install updates (CENTOS)
+    - name: update repo cache (CENTOS)
       tags: always
       dnf:
-        update_only: yes
         update_cache: yes
+      changed_when: false
       when: ansible_distribution == "CentOS"
+
+- hosts: all
+  become: true
+  tasks:
+    - name: add ssh key for tbf
+      tags: always
+      authorized_key:
+        user: tbf
+        key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILMl8Oi3YUuqORAvvgT5fLJKZntV7BhHoW9823t7cM44 ansible"
 
 - hosts: web_servers
   become: true
