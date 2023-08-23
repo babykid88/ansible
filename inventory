@@ -1,10 +1,11 @@
 [web_servers]
-192.168.100.82 apache_package=apache2 php_package=libapache2-mod-php
+192.168.100.82
 
 [db_servers]
-192.168.100.84 apache_package=apache2 php_package=libapache2-mod-php
+192.168.100.84
 
 [file_servers]
+192.168.100.82
 
 [workstations]
 192.168.100.83
